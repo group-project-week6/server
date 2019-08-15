@@ -8,8 +8,12 @@ const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3000
 const userRouter = require('./routes/userRouter')
 const textRouter = require('./routes/textRouter')
+const imageRouter = require('./routes/imageRouter')
+const logger = require('morgan')
 
 app.use(cors())
+app.use(logger('dev'))
+
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 
@@ -20,7 +24,7 @@ mongoose.connect("mongodb://localhost:27017/group-project-week6", { useNewUrlPar
 .catch(err => {
     console.log(err.message)
 })
-
+app.use('/images', imageRouter)
 app.use('/users', userRouter)
 app.use('/texts', textRouter)
 
