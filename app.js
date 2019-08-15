@@ -6,7 +6,8 @@ const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3000
-
+const userRouter = require('./routes/userRouter')
+const textRouter = require('./routes/textRouter')
 
 app.use(cors())
 app.use(express.urlencoded({extended: false}))
@@ -20,6 +21,8 @@ mongoose.connect("mongodb://localhost:27017/group-project-week6", { useNewUrlPar
     console.log(err.message)
 })
 
+app.use('/users', userRouter)
+app.use('/texts', textRouter)
 
 app.use((err, req, res, next) => {
     console.log(err)
