@@ -37,9 +37,7 @@ class UserController {
             username, email, password: encrypt(password)
         })
         .then(data => {
-            res.status(201).json({
-                message: 'Account is successfully created'
-            })
+            res.status(201).json(data)
         })
         .catch(next)
     }
