@@ -12,7 +12,7 @@ class TextController {
     }
 
     static findAll(req, res, next) {
-        Text.find()
+        Text.find().populate()
         .then(data => {
             res.status(200).json(data)
         })
@@ -21,7 +21,7 @@ class TextController {
 
     static find(req, res, next) {
         let { id } = req.decode
-        Text.find({userId: id})
+        Text.find({userId: id}).populate()
         .then(data => {
             res.status(200).json(data)
         })
