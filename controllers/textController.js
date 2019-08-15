@@ -28,8 +28,30 @@ class TextController {
         .catch(next)
     }
 
-    static delete() {
+    static delete(req,res,next) {
+        let id = req.params.id
 
+        Text.findByIdAndDelete(id)
+        .then(response=>{
+            res.status(200).json(response)
+        })
+        .catch(next)
+    }
+
+    static update(req,res,next){
+        
+        console.log(req.body.id)
+        let id = req.body.id
+        let updatedData = {}
+
+        req.body.title && (updatedData.title = req.body.title)
+        req.body.link && (updatedData.link=req.body.link)
+
+        Text.findByIdAndUpdate(id, updatedData, {new:true})
+        .then(response=>{
+            res.status(200).json(response)
+        })
+        .catch(next)
     }
 }
 
