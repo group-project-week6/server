@@ -6,9 +6,9 @@ const { generateToken } = require('../helpers/token')
 
 class UserController {
     static signIn(req, res, next){
-        const {username, password} = req.body
+        const {email, password} = req.body
         User.findOne({
-            username: username
+            email
         })
         .then(user => {
             if(user){
@@ -22,10 +22,10 @@ class UserController {
                     // console.log(token)
                     res.status(200).json({token})
                 } else { 
-                    next
+                    throw new Error("email or password not found")
                 }
             } else {
-                next
+             throw new Error("email or password not found")
             }
         })
         .catch(next)

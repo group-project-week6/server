@@ -2,6 +2,7 @@ const { verifyToken } = require('../helpers/token')
 
 function authentication(req,res,next){
     try{
+        // console.log(req.params.id, "authentication")
         const decode = verifyToken(req.headers.token)
         req.decode = decode
         next()

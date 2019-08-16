@@ -1,4 +1,5 @@
 require('dotenv').config()
+const urlToFileName = require('../helpers/urlToFilename')
 
 const {Storage} = require('@google-cloud/storage')
 
@@ -44,6 +45,26 @@ const sendUploadToGCS = (req, res, next) => {
   stream.end(req.file.buffer)
 }
 
+async function deleteFile(req,res,next) {
+
+ let filename = req.body.link
+ filename = urlToFileName(filename)
+
+ try{
+  await storage
+  .bucket(CLOUD_BUCKET)
+  .file(filename)
+  .delete();
+  res.status(200).json({
+    message : "successfully deleted in storage"
+  })
+ } 
+ catch{
+   res.status(500).json("hapus bro")
+ }
+
+}
+
 const Multer = require('multer'),
       multer = Multer({
         storage: Multer.MemoryStorage,
@@ -56,5 +77,6 @@ const Multer = require('multer'),
 module.exports = {
   getPublicUrl,
   sendUploadToGCS,
-  multer
+  multer,
+  deleteFile
 }
