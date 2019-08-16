@@ -1,7 +1,7 @@
 function errorHandler (err, req, res, next){
-    console.log(err)
+    console.log("masuk ke error handler")
     res.status(500).json({
-        message: err.message
+        message: "masuk ke error handler"
     })
 }
 
