@@ -19,7 +19,6 @@ class UserController {
                         email: user.email
                     }
                     const token = generateToken(payload)
-                    // console.log(token)
                     res.status(200).json({token})
                 } else { 
                     throw new Error("email or password not found")

@@ -16,7 +16,7 @@ app.use(logger('dev'))
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 
-mongoose.connect("mongodb://localhost:27017/group-project-week6", { useNewUrlParser: true })
+mongoose.connect("mongodb+srv://billy:monyet@clustertype40-z9sli.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true })
 .then(success => {
     console.log('mongoose connected')
 })
