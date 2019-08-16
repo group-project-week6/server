@@ -29,7 +29,6 @@ class TextController {
     }
 
     static delete() {
-
     }
 }
 
